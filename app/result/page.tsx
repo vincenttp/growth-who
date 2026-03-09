@@ -1,3 +1,5 @@
+
+"use client";
 import GrowthResult from "../components/GrowthResult";
 
 export default function ResultPage({ searchParams }: { searchParams: { status: string; zScore: string } }) {
