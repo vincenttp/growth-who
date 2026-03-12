@@ -9,6 +9,7 @@ interface InputFormCardProps {
 
 export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
   const [form, setForm] = useState({
+    name: "",
     gender: "",
     age: "",
     weight: "",
@@ -26,6 +27,10 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!form.gender) {
+      alert("Silakan pilih jenis kelamin anak.");
+      return;
+    }
     handleCalculate(form);
     // Optionally, you can keep the router.push if you want to redirect after submit
     // router.push(`/result?status=${status}&zScore=${zScore !== null ? zScore : 0}`);
@@ -38,13 +43,13 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
         className="bg-white rounded-xl shadow p-8 w-full max-w-lg mx-auto mb-8 flex flex-col gap-6 border border-zinc-200"
       >
         <h2 className="text-2xl font-semibold text-center mb-2 text-zinc-800">Kalkulator Perhitungan</h2>
-        <h3 className="text-xl text-center mb-2 text-lime-600 font-medium">Status Perkembangan Gizi Anak</h3>
+        <h3 className="text-xl text-center mb-2 text-orange-600 font-medium">Status Perkembangan Gizi Anak</h3>
         <div className="text-center text-lg mb-4 text-zinc-700">Anak Anda :</div>
         <div className="flex justify-center gap-12 mb-4">
           <div className="flex flex-col items-center">
             <button
               type="button"
-              className={`rounded-full border-2 ${form.gender === "male" ? "border-lime-500" : "border-transparent"} bg-transparent focus:outline-none mb-2`}
+              className={`rounded-full border-2 ${form.gender === "male" ? "border-orange-500" : "border-transparent"} bg-transparent focus:outline-none mb-2`}
               onClick={() => handleGender("male")}
               aria-label="Laki-laki"
             >
@@ -55,7 +60,7 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
           <div className="flex flex-col items-center">
             <button
               type="button"
-              className={`rounded-full border-2 ${form.gender === "female" ? "border-lime-500" : "border-transparent"} bg-transparent focus:outline-none mb-2`}
+              className={`rounded-full border-2 ${form.gender === "female" ? "border-orange-500" : "border-transparent"} bg-transparent focus:outline-none mb-2`}
               onClick={() => handleGender("female")}
               aria-label="Perempuan"
             >
@@ -65,6 +70,18 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
           </div>
         </div>
         <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <label className="text-zinc-700">Nama Anak</label>
+            <input
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full border border-zinc-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400 text-black"
+              placeholder="Masukkan nama anak"
+              required
+            />
+          </div>
           <div className="flex items-center gap-2">
             <label className="flex-1 text-zinc-700">Usia Anak (0-60 bulan)</label>
             <div className="flex gap-1">
@@ -75,10 +92,10 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
                 max="60"
                 value={form.age}
                 onChange={handleChange}
-                className="w-20 border border-zinc-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-lime-400 text-center text-black appearance-none"
+                className="w-20 border border-zinc-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-400 text-center text-black appearance-none"
                 required
               />
-              <span className="bg-lime-500 text-white rounded px-2 py-1 text-sm font-semibold">Bulan</span>
+              <span className="bg-orange-500 text-white rounded px-2 py-1 text-sm font-semibold">Bulan</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -90,10 +107,10 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
                 step="0.01"
                 value={form.weight}
                 onChange={handleChange}
-                className="w-20 border border-zinc-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-lime-400 text-center text-black appearance-none"
+                className="w-20 border border-zinc-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-400 text-center text-black appearance-none"
                 required
               />
-              <span className="bg-lime-500 text-white rounded px-2 py-1 text-sm font-semibold">Kg</span>
+              <span className="bg-orange-500 text-white rounded px-2 py-1 text-sm font-semibold">Kg</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -105,10 +122,10 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
                 step="0.1"
                 value={form.height}
                 onChange={handleChange}
-                className="w-20 border border-zinc-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-lime-400 text-center text-black appearance-none"
+                className="w-20 border border-zinc-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-400 text-center text-black appearance-none"
                 required
               />
-              <span className="bg-lime-500 text-white rounded px-2 py-1 text-sm font-semibold">Cm</span>
+              <span className="bg-orange-500 text-white rounded px-2 py-1 text-sm font-semibold">Cm</span>
             </div>
           </div>
         </div>
@@ -117,7 +134,7 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
         </div>
         <button
           type="submit"
-          className="bg-lime-500 hover:bg-lime-600 text-white font-semibold py-3 px-8 rounded-lg shadow transition-colors flex items-center justify-center mx-auto text-lg w-40"
+          className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow transition-colors flex items-center justify-center mx-auto text-lg w-40"
         >
           Hitung
         </button>
