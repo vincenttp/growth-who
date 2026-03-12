@@ -140,7 +140,7 @@ export default function InputFormCard({ handleCalculate }: InputFormCardProps) {
         </button>
       </form>
       <div className="text-center text-zinc-400 text-sm mb-8" style={{ marginTop: '-1.5rem' }}>
-        By Vanesa Sotta
+        By Vanesa Tangketasik
       </div>
     </>
   );
